@@ -12,9 +12,7 @@ public class TodayCostController extends PageView {
     public TodayCostController(Context context) {
         super(context);
 
-        View view = LayoutInflater.from(context).inflate(R.layout.sample_page, null);
-        TextView textView = (TextView) view.findViewById(R.id.text);
-        textView.setText("pagelist1");
+        View view = LayoutInflater.from(context).inflate(R.layout.today_cost_layout, null);
         addView(view);
     }
 }
