@@ -1,4 +1,4 @@
-package com.example.pikacount;
+package com.example.pikacount.viewStructure;
 
 import android.content.Context;
 import android.widget.RelativeLayout;
