@@ -13,6 +13,7 @@ import com.example.pikacount.viewStructure.TodayCostController;
 import com.example.pikacount.viewStructure.AnalyzeController;
 import com.example.pikacount.viewStructure.SearchController;
 import com.example.pikacount.viewStructure.PageView;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private ArrayList<PageView> pageList;
+    private ArrayList<String> titleName;
+    private TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,15 @@ public class MainActivity extends AppCompatActivity {
         pageList.add(new AnalyzeController(MainActivity.this));
         pageList.add(new SearchController(MainActivity.this));
 
+        titleName = new ArrayList<>();
+        titleName.add("Today Cost");
+        titleName.add("Analyze");
+        titleName.add("Search");
+
         viewPager = (ViewPager) findViewById(R.id.viewPage);
         viewPager.setAdapter(new ViewAdapter());
+        tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
     }
 
     private class ViewAdapter extends PagerAdapter {
@@ -53,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
             container.addView(pageList.get(position));
             return pageList.get(position);
             //return super.instantiateItem(container, position);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titleName.get(position);
         }
 
         @Override
