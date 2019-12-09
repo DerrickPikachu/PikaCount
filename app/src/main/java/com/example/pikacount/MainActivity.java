@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initSlideLayout();
+    }
+
+    private void initSlideLayout() {
         pageList = new ArrayList<>();
         pageList.add(new TodayCostController(MainActivity.this));
         pageList.add(new AnalyzeController(MainActivity.this));
@@ -46,35 +50,4 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
     }
 
-//    private class ViewAdapter extends PagerAdapter {
-//
-//        @Override
-//        public int getCount() {
-//            return pageList.size();
-//        }
-//
-//        @Override
-//        public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-//            return o == view;
-//        }
-//
-//        @NonNull
-//        @Override
-//        public Object instantiateItem(@NonNull ViewGroup container, int position) {
-//            container.addView(pageList.get(position));
-//            return pageList.get(position);
-//        }
-//
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//            return titleName.get(position);
-//        }
-//
-//        @Override
-//        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-//            //super.destroyItem(container, position, object);
-//            container.removeView((View)object);
-//        }
-//
-//    }
 }
