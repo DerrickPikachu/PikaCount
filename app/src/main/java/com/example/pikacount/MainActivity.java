@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.pikacount.myAdapter.ViewAdapter;
 import com.example.pikacount.viewStructure.TodayCostController;
 import com.example.pikacount.viewStructure.AnalyzeController;
 import com.example.pikacount.viewStructure.SearchController;
@@ -39,42 +40,41 @@ public class MainActivity extends AppCompatActivity {
         titleName.add("Analyze");
         titleName.add("Search");
 
-        viewPager = (ViewPager) findViewById(R.id.viewPage);
-        viewPager.setAdapter(new ViewAdapter());
+        viewPager = findViewById(R.id.viewPage);
+        viewPager.setAdapter(new ViewAdapter(pageList, titleName));
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
     }
 
-    private class ViewAdapter extends PagerAdapter {
-
-        @Override
-        public int getCount() {
-            return pageList.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-            return o == view;
-        }
-
-        @NonNull
-        @Override
-        public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            container.addView(pageList.get(position));
-            return pageList.get(position);
-            //return super.instantiateItem(container, position);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return titleName.get(position);
-        }
-
-        @Override
-        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-            //super.destroyItem(container, position, object);
-            container.removeView((View)object);
-        }
-
-    }
+//    private class ViewAdapter extends PagerAdapter {
+//
+//        @Override
+//        public int getCount() {
+//            return pageList.size();
+//        }
+//
+//        @Override
+//        public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
+//            return o == view;
+//        }
+//
+//        @NonNull
+//        @Override
+//        public Object instantiateItem(@NonNull ViewGroup container, int position) {
+//            container.addView(pageList.get(position));
+//            return pageList.get(position);
+//        }
+//
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//            return titleName.get(position);
+//        }
+//
+//        @Override
+//        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+//            //super.destroyItem(container, position, object);
+//            container.removeView((View)object);
+//        }
+//
+//    }
 }
