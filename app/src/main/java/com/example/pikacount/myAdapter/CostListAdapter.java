@@ -10,12 +10,12 @@ import com.example.pikacount.R;
 
 import java.util.ArrayList;
 
-public class ListAdapter extends BaseSwipeAdapter {
+public class CostListAdapter extends BaseSwipeAdapter {
 
     Context mainContext;
     ArrayList<String> list;
 
-    public ListAdapter(ArrayList<String> list, Context context) {
+    public CostListAdapter(ArrayList<String> list, Context context) {
         this.list = list;
         this.mainContext = context;
     }
