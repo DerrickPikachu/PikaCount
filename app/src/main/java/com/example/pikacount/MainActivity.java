@@ -22,12 +22,23 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    // ViewPager is used to slide the layout horizontally
     private ViewPager viewPager;
+
+    // Used to collect all the layout
     private ArrayList<PageView> pageList;
+
+    // Collect all the title of each layout
     private ArrayList<String> titleName;
+
+    // The tabLayout is the top entry of the interface
     private TabLayout tabs;
+
+    // My DataBase class used to control the data in primary data
     private CostDataBase costDb;
 
+    // Release to let every class can easily access the context of MainActivity
     public static Context mainContext;
 
     @Override
@@ -38,19 +49,24 @@ public class MainActivity extends AppCompatActivity {
 
         initBackend();
         initSlideLayout();
+
+        costDb.newCost("Test", 200, "2019-12-11", "dinner");
     }
 
     private void initSlideLayout() {
         pageList = new ArrayList<>();
+        // Create all layout
         pageList.add(new TodayCostController(MainActivity.this));
         pageList.add(new AnalyzeController(MainActivity.this));
         pageList.add(new SearchController(MainActivity.this));
 
+        // Initialize tabLayout's items
         titleName = new ArrayList<>();
         titleName.add("Today Cost");
         titleName.add("Analyze");
         titleName.add("Search");
 
+        // Initialize ViewPager
         viewPager = findViewById(R.id.viewPage);
         viewPager.setAdapter(new ViewAdapter(pageList, titleName));
         tabs = findViewById(R.id.tabs);

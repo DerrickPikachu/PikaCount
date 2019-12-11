@@ -1,5 +1,6 @@
 package com.example.pikacount.backend;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -26,5 +27,20 @@ public class CostDataBase {
         if (instance == null)
             instance = new CostDataBase();
         return instance;
+    }
+
+    /*
+    TODO
+        need a Cost class
+     */
+    public void newCost(String name, int price, String date, String type) {
+        ContentValues cv = new ContentValues(4);
+
+        cv.put("name", name);
+        cv.put("price", price);
+        cv.put("date", date);
+        cv.put("type", type);
+
+        SQLDb.insert(TABLE_COST_NAME, null, cv);
     }
 }
