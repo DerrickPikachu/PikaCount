@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.pikacount.backend.CostDataBase;
 import com.example.pikacount.myAdapter.ViewAdapter;
 import com.example.pikacount.viewStructure.TodayCostController;
 import com.example.pikacount.viewStructure.AnalyzeController;
@@ -24,12 +26,17 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<PageView> pageList;
     private ArrayList<String> titleName;
     private TabLayout tabs;
+    private CostDataBase costDb;
+
+    public static Context mainContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainContext = this;
 
+        initBackend();
         initSlideLayout();
     }
 
@@ -50,4 +57,7 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
     }
 
+    private void initBackend() {
+        costDb = CostDataBase.getInstance();
+    }
 }
