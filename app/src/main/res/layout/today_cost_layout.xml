@@ -41,5 +41,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/costTitle" />
+
+        <TextView
+            android:id="@+id/addNewTxv"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="#83D1FA"
+            android:gravity="center"
+            android:text="@string/addNew"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/costList"
+            app:layout_constraintEnd_toEndOf="@+id/costList" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

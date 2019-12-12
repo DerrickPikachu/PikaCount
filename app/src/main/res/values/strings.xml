@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PikaCount</string>
     <string name="cost_title">Today Cost:</string>
+    <string name="addNew">+</string>
 </resources>

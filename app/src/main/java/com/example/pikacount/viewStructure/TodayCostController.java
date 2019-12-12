@@ -20,6 +20,7 @@ public class TodayCostController extends PageView {
     private View layout;
     private ArrayList<String> data;
     private ListView costListView;
+    private TextView addNewTxv;
 
     public TodayCostController(Context context) {
         super(context);
@@ -29,6 +30,7 @@ public class TodayCostController extends PageView {
         addView(layout);
 
         costListView = layout.findViewById(R.id.costList);
+        addNewTxv = layout.findViewById(R.id.addNewTxv);
 
         data = new ArrayList<>();
         data.add("1");
@@ -39,5 +41,11 @@ public class TodayCostController extends PageView {
         listAdapter.setMode(Attributes.Mode.Single);
         costListView.setAdapter(listAdapter);
 
+        addNewTxv.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Click!!");
+            }
+        });
     }
 }
