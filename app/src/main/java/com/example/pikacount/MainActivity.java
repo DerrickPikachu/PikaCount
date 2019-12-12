@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         initBackend();
         initSlideLayout();
 
-        costDb.newCost("Test", 200, "2019-12-11", "dinner");
+//        costDb.newCost("Test", 200, "2019-12-11", "dinner");
     }
 
     private void initSlideLayout() {
@@ -85,7 +85,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         System.out.println("in onActivityResult!!~~");
         if (requestCode == ADD_NEW_DATA_CODE) {
-
+            costDb.newCost(data.getStringExtra("name"),
+                    data.getIntExtra("price", 0),
+                    data.getStringExtra("date"),
+                    data.getStringExtra("type"));
         }
     }
 }
