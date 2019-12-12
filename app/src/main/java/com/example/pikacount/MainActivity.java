@@ -6,6 +6,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
     private CostDataBase costDb;
 
     // Release to let every class can easily access the context of MainActivity
-    public static Context mainContext;
+    public static AppCompatActivity mainContext;
+
+
+    public final static int ADD_NEW_DATA_CODE = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,5 +79,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initBackend() {
         costDb = CostDataBase.getInstance();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("in onActivityResult!!~~");
+        if (requestCode == ADD_NEW_DATA_CODE) {
+
+        }
     }
 }

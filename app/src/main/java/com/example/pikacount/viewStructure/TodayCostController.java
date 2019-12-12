@@ -1,6 +1,7 @@
 package com.example.pikacount.viewStructure;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListAdapter;
@@ -8,6 +9,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.daimajia.swipe.util.Attributes;
+import com.example.pikacount.MainActivity;
+import com.example.pikacount.NewDataActivity;
 import com.example.pikacount.R;
 import com.example.pikacount.myAdapter.CostListAdapter;
 import com.example.pikacount.viewStructure.PageView;
@@ -44,7 +47,8 @@ public class TodayCostController extends PageView {
         addNewTxv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("Click!!");
+                Intent intent = new Intent(MainActivity.mainContext, NewDataActivity.class);
+                MainActivity.mainContext.startActivityForResult(intent, MainActivity.ADD_NEW_DATA_CODE);
             }
         });
     }
