@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B9A9F0">
+        android:background="#18CF80">
 
         <ListView
             android:id="@+id/costList"
@@ -46,6 +46,7 @@
             android:id="@+id/addNewTxv"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_marginBottom="10dp"
             android:background="#83D1FA"
             android:gravity="center"
             android:text="@string/addNew"
