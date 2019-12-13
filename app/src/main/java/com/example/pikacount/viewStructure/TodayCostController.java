@@ -12,10 +12,13 @@ import com.daimajia.swipe.util.Attributes;
 import com.example.pikacount.MainActivity;
 import com.example.pikacount.NewDataActivity;
 import com.example.pikacount.R;
+import com.example.pikacount.backend.Cost;
+import com.example.pikacount.backend.CostDataBase;
 import com.example.pikacount.myAdapter.CostListAdapter;
 import com.example.pikacount.viewStructure.PageView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TodayCostController extends PageView {
 
@@ -24,6 +27,7 @@ public class TodayCostController extends PageView {
     private ArrayList<String> data;
     private ListView costListView;
     private TextView addNewTxv;
+    private CostDataBase costDb;
 
     public TodayCostController(Context context) {
         super(context);
@@ -34,6 +38,7 @@ public class TodayCostController extends PageView {
 
         costListView = layout.findViewById(R.id.costList);
         addNewTxv = layout.findViewById(R.id.addNewTxv);
+        costDb = CostDataBase.getInstance();
 
         data = new ArrayList<>();
         data.add("1");
@@ -49,6 +54,16 @@ public class TodayCostController extends PageView {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.mainContext, NewDataActivity.class);
                 MainActivity.mainContext.startActivityForResult(intent, MainActivity.ADD_NEW_DATA_CODE);
+            }
+        });
+
+        findViewById(R.id.testBtn).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<Cost> list = costDb.searchByDate(new Date());
+
+                for (int i=0; i<list.size(); i++)
+                    System.out.println(list.get(i).getCostName());
             }
         });
     }

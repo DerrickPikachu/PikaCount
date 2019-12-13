@@ -35,7 +35,7 @@ public class NewDataActivity extends AppCompatActivity implements View.OnClickLi
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        data.putExtra("name", nameTxv.getText());
+        data.putExtra("costName", nameTxv.getText().toString());
         data.putExtra("price", Integer.parseInt(priceTxv.getText().toString()));
         data.putExtra("type", typeSpinner.getSelectedItem().toString());
         data.putExtra("date", format.format(today));

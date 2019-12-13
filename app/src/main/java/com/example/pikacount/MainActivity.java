@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         System.out.println("in onActivityResult!!~~");
         if (requestCode == ADD_NEW_DATA_CODE) {
-            costDb.newCost(data.getStringExtra("name"),
+            costDb.newCost(data.getStringExtra("costName"),
                     data.getIntExtra("price", 0),
                     data.getStringExtra("date"),
                     data.getStringExtra("type"));
