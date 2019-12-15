@@ -24,7 +24,7 @@ public class TodayCostController extends PageView {
 
     private Context mainContext;
     private View layout;
-    private ArrayList<String> data;
+    private ArrayList<Cost> data;
     private ListView costListView;
     private TextView addNewTxv;
     private CostDataBase costDb;
@@ -38,16 +38,9 @@ public class TodayCostController extends PageView {
 
         costListView = layout.findViewById(R.id.costList);
         addNewTxv = layout.findViewById(R.id.addNewTxv);
+
         costDb = CostDataBase.getInstance();
-
-        data = new ArrayList<>();
-        data.add("1");
-        data.add("2");
-        data.add("3");
-
-        CostListAdapter listAdapter = new CostListAdapter(data, mainContext);
-        listAdapter.setMode(Attributes.Mode.Single);
-        costListView.setAdapter(listAdapter);
+        updateList();
 
         addNewTxv.setOnClickListener(new OnClickListener() {
             @Override
@@ -57,14 +50,13 @@ public class TodayCostController extends PageView {
             }
         });
 
-        findViewById(R.id.testBtn).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayList<Cost> list = costDb.searchByDate(new Date());
+    }
 
-                for (int i=0; i<list.size(); i++)
-                    System.out.println(list.get(i).getCostName());
-            }
-        });
+    private void updateList() {
+        // Query today consumes
+        data = costDb.searchByDate(new Date());
+        CostListAdapter listAdapter = new CostListAdapter(data, mainContext);
+        listAdapter.setMode(Attributes.Mode.Single);
+        costListView.setAdapter(listAdapter);
     }
 }

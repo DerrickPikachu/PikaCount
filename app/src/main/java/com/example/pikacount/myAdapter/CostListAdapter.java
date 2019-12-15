@@ -7,15 +7,16 @@ import android.view.ViewGroup;
 
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 import com.example.pikacount.R;
+import com.example.pikacount.backend.Cost;
 
 import java.util.ArrayList;
 
 public class CostListAdapter extends BaseSwipeAdapter {
 
     Context mainContext;
-    ArrayList<String> list;
+    ArrayList<Cost> list;
 
-    public CostListAdapter(ArrayList<String> list, Context context) {
+    public CostListAdapter(ArrayList<Cost> list, Context context) {
         this.list = list;
         this.mainContext = context;
     }
