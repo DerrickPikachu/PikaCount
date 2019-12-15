@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 import com.example.pikacount.R;
@@ -34,7 +35,15 @@ public class CostListAdapter extends BaseSwipeAdapter {
 
     @Override
     public void fillValues(int position, View convertView) {
+        Cost cost = list.get(position);
 
+        TextView costName = convertView.findViewById(R.id.costName);
+        TextView price = convertView.findViewById(R.id.price);
+        TextView type = convertView.findViewById(R.id.type);
+
+        costName.setText(cost.getCostName());
+        price.setText(convertView.getResources().getString(R.string.input_price) + " " + Integer.toString(cost.getPrice()));
+        type.setText(convertView.getResources().getString(R.string.input_type) + " " + cost.getType());
     }
 
     @Override
