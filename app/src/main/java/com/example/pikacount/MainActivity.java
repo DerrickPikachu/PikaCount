@@ -39,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
     // My DataBase class used to control the data in primary data
     private CostDataBase costDb;
 
+    private TodayCostController todayCostLayout;
+
+    private AnalyzeController analyzeLayout;
+
+    private SearchController searchLayout;
+
     // Release to let every class can easily access the context of MainActivity
     public static AppCompatActivity mainContext;
 
@@ -60,9 +66,14 @@ public class MainActivity extends AppCompatActivity {
     private void initSlideLayout() {
         pageList = new ArrayList<>();
         // Create all layout
-        pageList.add(new TodayCostController(MainActivity.this));
-        pageList.add(new AnalyzeController(MainActivity.this));
-        pageList.add(new SearchController(MainActivity.this));
+
+        todayCostLayout = new TodayCostController(MainActivity.this);
+        analyzeLayout = new AnalyzeController(MainActivity.this);
+        searchLayout = new SearchController(MainActivity.this);
+
+        pageList.add(todayCostLayout);
+        pageList.add(analyzeLayout);
+        pageList.add(searchLayout);
 
         // Initialize tabLayout's items
         titleName = new ArrayList<>();
@@ -84,11 +95,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         System.out.println("in onActivityResult!!~~");
-        if (requestCode == ADD_NEW_DATA_CODE) {
+        if (requestCode == ADD_NEW_DATA_CODE && resultCode == RESULT_OK) {
             costDb.newCost(data.getStringExtra("costName"),
                     data.getIntExtra("price", 0),
                     data.getStringExtra("date"),
                     data.getStringExtra("type"));
+            todayCostLayout.updateList();
         }
     }
 }

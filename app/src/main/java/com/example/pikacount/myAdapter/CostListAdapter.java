@@ -40,7 +40,9 @@ public class CostListAdapter extends BaseSwipeAdapter {
         TextView costName = convertView.findViewById(R.id.costName);
         TextView price = convertView.findViewById(R.id.price);
         TextView type = convertView.findViewById(R.id.type);
+        TextView posTxv = convertView.findViewById(R.id.position);
 
+        posTxv.setText(Integer.toString(position + 1) + ".");
         costName.setText(cost.getCostName());
         price.setText(convertView.getResources().getString(R.string.input_price) + " " + Integer.toString(cost.getPrice()));
         type.setText(convertView.getResources().getString(R.string.input_type) + " " + cost.getType());

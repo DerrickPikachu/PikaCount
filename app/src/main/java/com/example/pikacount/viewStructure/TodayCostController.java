@@ -52,7 +52,7 @@ public class TodayCostController extends PageView {
 
     }
 
-    private void updateList() {
+    public void updateList() {
         // Query today consumes
         data = costDb.searchByDate(new Date());
         CostListAdapter listAdapter = new CostListAdapter(data, mainContext);
