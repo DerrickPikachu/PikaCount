@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
     public final static int ADD_NEW_DATA_CODE = 200;
 
+    public final static int EDIT_DATA_CODE = 300;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

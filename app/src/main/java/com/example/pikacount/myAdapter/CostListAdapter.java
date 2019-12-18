@@ -1,12 +1,17 @@
 package com.example.pikacount.myAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
+import com.example.pikacount.MainActivity;
+import com.example.pikacount.NewDataActivity;
 import com.example.pikacount.R;
 import com.example.pikacount.backend.Cost;
 import com.example.pikacount.backend.CostDataBase;
@@ -16,12 +21,12 @@ import java.util.ArrayList;
 
 public class CostListAdapter extends BaseSwipeAdapter {
 
-    private Context mainContext;
+    private AppCompatActivity mainContext;
     private ArrayList<Cost> list;
     private CostDataBase costDb;
     private PageView controlLayout;
 
-    public CostListAdapter(ArrayList<Cost> list, Context context, PageView page) {
+    public CostListAdapter(ArrayList<Cost> list, AppCompatActivity context, PageView page) {
         this.list = list;
         this.mainContext = context;
         costDb = CostDataBase.getInstance();
@@ -36,6 +41,8 @@ public class CostListAdapter extends BaseSwipeAdapter {
     @Override
     public View generateView(int position, ViewGroup parent) {
         final View view = LayoutInflater.from(mainContext).inflate(R.layout.list_item, null);
+
+        // Set delete operation
         view.findViewById(R.id.deleteTxv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +53,25 @@ public class CostListAdapter extends BaseSwipeAdapter {
                 controlLayout.updateList();
             }
         });
+
+        // Set edit operation
+        view.findViewById(R.id.editTxv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent currentData = new Intent(mainContext, NewDataActivity.class);
+
+                TextView costName = view.findViewById(R.id.costName);
+                TextView price = view.findViewById(R.id.price);
+                TextView type = view.findViewById(R.id.type);
+
+                currentData.putExtra("name", costName.getText().toString());
+                currentData.putExtra("price", price.getText().toString());
+                currentData.putExtra("type", type.getText().toString());
+
+                mainContext.startActivityForResult(currentData, MainActivity.EDIT_DATA_CODE);
+            }
+        });
+
         return view;
     }
 

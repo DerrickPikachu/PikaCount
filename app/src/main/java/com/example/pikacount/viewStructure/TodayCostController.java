@@ -8,6 +8,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.daimajia.swipe.util.Attributes;
 import com.example.pikacount.MainActivity;
 import com.example.pikacount.NewDataActivity;
@@ -22,14 +24,14 @@ import java.util.Date;
 
 public class TodayCostController extends PageView {
 
-    private Context mainContext;
+    private AppCompatActivity mainContext;
     private View layout;
     private ArrayList<Cost> data;
     private ListView costListView;
     private TextView addNewTxv;
     private CostDataBase costDb;
 
-    public TodayCostController(Context context) {
+    public TodayCostController(AppCompatActivity context) {
         super(context);
         this.mainContext = context;
 
@@ -67,7 +69,7 @@ public class TodayCostController extends PageView {
     @Override
     public void updateList() {
         // Query today consumes
-        data = costDb.searchByDate(new Date());
+        data = costDb.search(new Date());
         CostListAdapter listAdapter = new CostListAdapter(data, mainContext, this);
         listAdapter.setMode(Attributes.Mode.Single);
         costListView.setAdapter(listAdapter);

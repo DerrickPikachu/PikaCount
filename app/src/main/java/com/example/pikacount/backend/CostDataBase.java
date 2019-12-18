@@ -52,7 +52,7 @@ public class CostDataBase {
         SQLDb.insert(TABLE_COST_NAME, null, cv);
     }
 
-    public ArrayList<Cost> searchByDate(Date date) {
+    public ArrayList<Cost> search(Date date) {
         ArrayList<Cost> costList = new ArrayList<>();
         String forSearch;
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
