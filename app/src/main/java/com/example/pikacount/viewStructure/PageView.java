@@ -7,4 +7,6 @@ public abstract class PageView extends RelativeLayout {
     public PageView(Context context) {
         super(context);
     }
+
+    public void updateList() {}
 }

@@ -9,17 +9,23 @@ import android.widget.TextView;
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 import com.example.pikacount.R;
 import com.example.pikacount.backend.Cost;
+import com.example.pikacount.backend.CostDataBase;
+import com.example.pikacount.viewStructure.PageView;
 
 import java.util.ArrayList;
 
 public class CostListAdapter extends BaseSwipeAdapter {
 
-    Context mainContext;
-    ArrayList<Cost> list;
+    private Context mainContext;
+    private ArrayList<Cost> list;
+    private CostDataBase costDb;
+    private PageView controlLayout;
 
-    public CostListAdapter(ArrayList<Cost> list, Context context) {
+    public CostListAdapter(ArrayList<Cost> list, Context context, PageView page) {
         this.list = list;
         this.mainContext = context;
+        costDb = CostDataBase.getInstance();
+        controlLayout = page;
     }
 
     @Override
@@ -29,7 +35,17 @@ public class CostListAdapter extends BaseSwipeAdapter {
 
     @Override
     public View generateView(int position, ViewGroup parent) {
-        View view = LayoutInflater.from(mainContext).inflate(R.layout.list_item, null);
+        final View view = LayoutInflater.from(mainContext).inflate(R.layout.list_item, null);
+        view.findViewById(R.id.deleteTxv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> condition = new ArrayList<>();
+                TextView costName = view.findViewById(R.id.costName);
+                condition.add(costName.getText().toString());
+                costDb.delete(CostDataBase.TABLE_COST_NAME, condition);
+                controlLayout.updateList();
+            }
+        });
         return view;
     }
 
