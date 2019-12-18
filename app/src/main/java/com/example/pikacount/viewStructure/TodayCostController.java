@@ -50,6 +50,17 @@ public class TodayCostController extends PageView {
             }
         });
 
+        findViewById(R.id.testBtn).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> condition = new ArrayList<>();
+                condition.add("abc");
+                condition.add("");
+                condition.add("");
+                condition.add("");
+                costDb.delete(CostDataBase.TABLE_COST_NAME, condition);
+            }
+        });
     }
 
     public void updateList() {

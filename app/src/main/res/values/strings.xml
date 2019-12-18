@@ -7,6 +7,8 @@
     <string name="add_data_btn">insert</string>
     <string name="input_price">price:</string>
     <string name="input_type">type:</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
     <string-array name="type_list">
         <item>早餐</item>
         <item>午餐</item>

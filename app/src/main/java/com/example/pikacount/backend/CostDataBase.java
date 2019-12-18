@@ -16,7 +16,7 @@ public class CostDataBase {
     private static CostDataBase instance;
     private static SQLiteDatabase SQLDb;
 
-    private final String TABLE_COST_NAME = "Cost";
+    public static final String TABLE_COST_NAME = "Cost";
 
     private final String CREATE_COST = "CREATE TABLE IF NOT EXISTS " + TABLE_COST_NAME +
                                         "(name VARCHAR(32), " +
@@ -27,6 +27,8 @@ public class CostDataBase {
     private final String SEARCH_BY_DATE = "SELECT * " +
                                             "FROM " + TABLE_COST_NAME + " " +
                                             "WHERE date between '";
+
+    private final String[] COST_ATTRIBUTE = {"name", "price", "date", "type"};
 
     private CostDataBase() {
         SQLDb = MainActivity.mainContext.openOrCreateDatabase("PikaCountDb", Context.MODE_PRIVATE, null);
@@ -39,10 +41,6 @@ public class CostDataBase {
         return instance;
     }
 
-    /*
-    TODO
-        need a Cost class
-     */
     public void newCost(String name, int price, String date, String type) {
         ContentValues cv = new ContentValues(4);
 
@@ -71,5 +69,22 @@ public class CostDataBase {
         }
 
         return costList;
+    }
+
+    public void delete(String tableName, ArrayList<String> condition) {
+        String deleteSQL = "DELETE FROM " + tableName + " " +
+                            "WHERE ";
+        String conditionSQL = "";
+
+        for (int i=0; i<condition.size(); i++) {
+            if (condition.get(i) != "") {
+                if (conditionSQL != "")
+                    conditionSQL = conditionSQL + "and";
+                conditionSQL = conditionSQL + COST_ATTRIBUTE[i] + "='" + condition.get(i) + "'";
+            }
+        }
+
+        deleteSQL = deleteSQL + conditionSQL + ";";
+        SQLDb.execSQL(deleteSQL);
     }
 }
