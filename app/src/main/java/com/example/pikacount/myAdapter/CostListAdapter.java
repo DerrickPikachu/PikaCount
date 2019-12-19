@@ -79,7 +79,7 @@ public class CostListAdapter extends BaseSwipeAdapter {
                 currentData.putExtra("name", costName.getText().toString());
                 currentData.putExtra("price", price.getText().toString().substring(7));
                 currentData.putExtra("type", type.getText().toString().substring(6));
-                currentData.putExtra("id", Integer.toString(baseId + position));
+                currentData.putExtra("id", Integer.toString(list.get(position).getCostId()));
                 mainContext.startActivityForResult(currentData, MainActivity.EDIT_DATA_CODE);
             }
         });

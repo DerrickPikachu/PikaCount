@@ -19,15 +19,15 @@ public class CostDataBase {
     public static final String TABLE_COST_NAME = "Cost";
 
     private final String CREATE_COST = "CREATE TABLE IF NOT EXISTS " + TABLE_COST_NAME +
-                                        "(name VARCHAR(32), " +
-                                        "price INTEGER, " +
-                                        "date DATE, " +
-                                        "type VARCHAR(20), " +
-                                        "costId INTEGER PRIMARY KEY AUTOINCREMENT);";
+            "(name VARCHAR(32), " +
+            "price INTEGER, " +
+            "date DATE, " +
+            "type VARCHAR(20), " +
+            "costId INTEGER PRIMARY KEY AUTOINCREMENT);";
 
     private final String SEARCH_BY_DATE = "SELECT * " +
-                                            "FROM " + TABLE_COST_NAME + " " +
-                                            "WHERE date between '";
+            "FROM " + TABLE_COST_NAME + " " +
+            "WHERE date between '";
 
     private final String[] COST_ATTRIBUTE = {"name", "price", "date", "type"};
 
@@ -93,7 +93,20 @@ public class CostDataBase {
         SQLDb.execSQL(deleteSQL);
     }
 
-    public void editRow(String name, int price, String date, String type) {
+    public void editRow(ArrayList<String> newSet, int id) {
+        String editSQL = "UPDATE " + TABLE_COST_NAME + " ";
+        String setting = "SET ";
+        String condition = "WHERE costId=" + id + ";";
 
+        for (int i=0; i<newSet.size(); i++) {
+            if (newSet.get(i) != "") {
+                if (!setting.equals("SET "))
+                    setting = setting + ",";
+                setting = setting + COST_ATTRIBUTE[i] + "='" + newSet.get(i) + "'";
+            }
+        }
+
+        editSQL = editSQL + setting + " " + condition;
+        SQLDb.execSQL(editSQL);
     }
 }
