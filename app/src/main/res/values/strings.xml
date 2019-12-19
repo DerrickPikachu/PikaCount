@@ -10,7 +10,7 @@
     <string name="delete">delete</string>
     <string name="edit">edit</string>
     <string name="name_hint">Cost name</string>
-    <string name="pirce_hint">Please input price</string>
+    <string name="price_hint">Please input price</string>
     <string-array name="type_list">
         <item>早餐</item>
         <item>午餐</item>

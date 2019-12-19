@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/pirce_hint"
+        android:hint="@string/price_hint"
         android:inputType="textPersonName"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="@+id/guideline" />

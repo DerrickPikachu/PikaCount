@@ -22,7 +22,8 @@ public class CostDataBase {
                                         "(name VARCHAR(32), " +
                                         "price INTEGER, " +
                                         "date DATE, " +
-                                        "type VARCHAR(20))";
+                                        "type VARCHAR(20), " +
+                                        "costId INTEGER PRIMARY KEY AUTOINCREMENT);";
 
     private final String SEARCH_BY_DATE = "SELECT * " +
                                             "FROM " + TABLE_COST_NAME + " " +
@@ -63,7 +64,7 @@ public class CostDataBase {
         cur.moveToFirst();
         while (!cur.isAfterLast()) {
             Cost cost = new Cost(cur.getString(0), cur.getInt(1),
-                    cur.getString(2), cur.getString(3));
+                    cur.getString(2), cur.getString(3), cur.getInt(4));
             costList.add(cost);
             cur.moveToNext();
         }
@@ -71,6 +72,10 @@ public class CostDataBase {
         return costList;
     }
 
+    /*
+    TODO:
+        use id to delete the target
+     */
     public void delete(String tableName, ArrayList<String> condition) {
         String deleteSQL = "DELETE FROM " + tableName + " " +
                             "WHERE ";
@@ -86,5 +91,9 @@ public class CostDataBase {
 
         deleteSQL = deleteSQL + conditionSQL + ";";
         SQLDb.execSQL(deleteSQL);
+    }
+
+    public void editRow(String name, int price, String date, String type) {
+
     }
 }

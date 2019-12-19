@@ -104,5 +104,8 @@ public class MainActivity extends AppCompatActivity {
                     data.getStringExtra("type"));
             todayCostLayout.updateList();
         }
+        if (requestCode == EDIT_DATA_CODE && resultCode == RESULT_OK) {
+
+        }
     }
 }

@@ -5,12 +5,14 @@ public class Cost {
     private int price;
     private String date;
     private String type;
+    private int costId;
 
-    public Cost (String name, int price, String date, String type) {
+    public Cost (String name, int price, String date, String type, int id) {
         this.name = name;
         this.price = price;
         this.date = date;
         this.type = type;
+        this.costId = id;
     }
 
     public int getPrice() {
@@ -27,5 +29,9 @@ public class Cost {
 
     public String getType() {
         return type;
+    }
+
+    public int getCostId() {
+        return costId;
     }
 }

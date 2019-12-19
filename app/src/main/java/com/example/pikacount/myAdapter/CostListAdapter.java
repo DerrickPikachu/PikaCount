@@ -26,8 +26,20 @@ public class CostListAdapter extends BaseSwipeAdapter {
     private CostDataBase costDb;
     private PageView controlLayout;
 
+    // The smallest id in the list
+    // Use it to be the base when there is the need of getting the other id by adding an offset
+    private int baseId;
+
     public CostListAdapter(ArrayList<Cost> list, AppCompatActivity context, PageView page) {
         this.list = list;
+
+        if (list.isEmpty()) {
+            baseId = -1;
+        }
+        else {
+            baseId = list.get(0).getCostId();
+        }
+
         this.mainContext = context;
         costDb = CostDataBase.getInstance();
         controlLayout = page;
@@ -39,7 +51,7 @@ public class CostListAdapter extends BaseSwipeAdapter {
     }
 
     @Override
-    public View generateView(int position, ViewGroup parent) {
+    public View generateView(final int position, ViewGroup parent) {
         final View view = LayoutInflater.from(mainContext).inflate(R.layout.list_item, null);
 
         // Set delete operation
@@ -65,9 +77,9 @@ public class CostListAdapter extends BaseSwipeAdapter {
                 TextView type = view.findViewById(R.id.type);
 
                 currentData.putExtra("name", costName.getText().toString());
-                currentData.putExtra("price", price.getText().toString());
-                currentData.putExtra("type", type.getText().toString());
-
+                currentData.putExtra("price", price.getText().toString().substring(7));
+                currentData.putExtra("type", type.getText().toString().substring(6));
+                currentData.putExtra("id", Integer.toString(baseId + position));
                 mainContext.startActivityForResult(currentData, MainActivity.EDIT_DATA_CODE);
             }
         });
