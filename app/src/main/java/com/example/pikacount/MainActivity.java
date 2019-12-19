@@ -8,8 +8,6 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.pikacount.backend.CostDataBase;
 import com.example.pikacount.myAdapter.ViewAdapter;
@@ -99,13 +97,21 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("in onActivityResult!!~~");
         if (requestCode == ADD_NEW_DATA_CODE && resultCode == RESULT_OK) {
             costDb.newCost(data.getStringExtra("costName"),
-                    data.getIntExtra("price", 0),
+                    Integer.parseInt(data.getStringExtra("price")),
                     data.getStringExtra("date"),
                     data.getStringExtra("type"));
             todayCostLayout.updateList();
         }
         if (requestCode == EDIT_DATA_CODE && resultCode == RESULT_OK) {
+            ArrayList<String> setting = new ArrayList<>();
 
+            setting.add(data.getStringExtra("costName"));
+            setting.add(data.getStringExtra("price"));
+            setting.add(data.getStringExtra("date"));
+            setting.add(data.getStringExtra("type"));
+
+            costDb.editRow(setting, Integer.parseInt(data.getStringExtra("id")));
+            todayCostLayout.updateList();
         }
     }
 }
