@@ -50,21 +50,17 @@ public class AnalyzeController extends PageView {
         costDb = CostDataBase.getInstance();
         typeNames = layout.getResources().getStringArray(R.array.type_list);
 
-        initPieChart();
+        buildPieChart(new Date());
     }
 
-    /*
-    TODO:
-        need a buildPieChart function
-     */
-    private void initPieChart() {
+    private void buildPieChart(Date date) {
         pieChart = layout.findViewById(R.id.chart);
 
         /*
         TODO:
-            Query a week or a month for pie chart
+            Query a week or a month for pie chart (fix the CostDataBase.search() function)
          */
-        ArrayList<Cost> data = costDb.search(new Date());
+        ArrayList<Cost> data = costDb.search(date);
         eachTypeCost = new HashMap<>();
 
         if (!data.isEmpty()) {
@@ -87,7 +83,8 @@ public class AnalyzeController extends PageView {
                 if (eachTypeCost.containsKey(typeNames[i])) {
                     float value = eachTypeCost.get(typeNames[i]);
                     String label = typeNames[i];
-                    slices.add(new SliceValue(value, layout.getResources().getColor(colors[i])).setLabel(label));
+                    slices.add(new SliceValue(value, layout.getResources().getColor(colors[i]))
+                                                                        .setLabel(label));
                 }
             }
 
@@ -98,5 +95,14 @@ public class AnalyzeController extends PageView {
                     .setCenterText1FontSize(20);
             pieChart.setPieChartData(chartData);
         }
+    }
+
+    public void updatePieChart() {
+        /*
+        TODO:
+            After can create the pie chart for a month or a week,
+            need to record the parameter of the last call of buildPieChart
+         */
+        buildPieChart(new Date());
     }
 }

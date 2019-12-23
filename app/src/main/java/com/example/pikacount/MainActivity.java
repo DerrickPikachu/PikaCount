@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     data.getStringExtra("date"),
                     data.getStringExtra("type"));
             todayCostLayout.updateList();
+            analyzeLayout.updatePieChart();
         }
         if (requestCode == EDIT_DATA_CODE && resultCode == RESULT_OK) {
             ArrayList<String> setting = new ArrayList<>();
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
             costDb.editRow(setting, Integer.parseInt(data.getStringExtra("id")));
             todayCostLayout.updateList();
+            analyzeLayout.updatePieChart();
         }
     }
 }
