@@ -45,6 +45,10 @@ public class NewDataActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initMap() {
+        /*
+            TODO:
+                Use get string array to put those type
+         */
         spinnerMap = new HashMap<>();
         spinnerMap.put("早餐", 0);
         spinnerMap.put("午餐", 1);
