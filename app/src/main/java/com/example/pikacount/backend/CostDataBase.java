@@ -58,7 +58,7 @@ public class CostDataBase {
         String forSearch;
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        forSearch = SEARCH_BY_DATE + format.format(date) + "' and '" + format.format(date) + "23:59:59'";
+        forSearch = SEARCH_BY_DATE + format.format(date) + "' and '" + format.format(new Date()) + "23:59:59'";
         Cursor cur = SQLDb.rawQuery(forSearch, null);
 
         cur.moveToFirst();

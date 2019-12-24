@@ -2,17 +2,22 @@ package com.example.pikacount.viewStructure;
 
 import android.app.slice.Slice;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.pikacount.R;
 import com.example.pikacount.backend.Cost;
 import com.example.pikacount.backend.CostDataBase;
 import com.example.pikacount.viewStructure.PageView;
 
+import java.time.LocalDate;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -40,6 +45,7 @@ public class AnalyzeController extends PageView {
             R.color.color5, R.color.color6, R.color.color7, R.color.color8, R.color.color9,
             R.color.color10};
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public AnalyzeController(Context context) {
         super(context);
         this.mainContext = context;
@@ -50,7 +56,12 @@ public class AnalyzeController extends PageView {
         costDb = CostDataBase.getInstance();
         typeNames = layout.getResources().getStringArray(R.array.type_list);
 
-        buildPieChart(new Date());
+        // Test
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DATE, -30);
+
+        buildPieChart(calendar.getTime());
     }
 
     private void buildPieChart(Date date) {
