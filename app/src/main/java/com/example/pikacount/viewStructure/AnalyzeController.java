@@ -39,9 +39,11 @@ public class AnalyzeController extends PageView {
 
     private HashMap<String, Float> eachTypeCost;
 
+    private Date preQueryDate;
+
     private String[] typeNames;
 
-    private int[] colors = {R.color.color1, R.color.color2, R.color.color3, R.color.color4,
+    private final int[] colors = {R.color.color1, R.color.color2, R.color.color3, R.color.color4,
             R.color.color5, R.color.color6, R.color.color7, R.color.color8, R.color.color9,
             R.color.color10};
 
@@ -56,21 +58,42 @@ public class AnalyzeController extends PageView {
         costDb = CostDataBase.getInstance();
         typeNames = layout.getResources().getStringArray(R.array.type_list);
 
-        // Test
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        calendar.add(Calendar.DATE, -30);
+        buildPieChart(new Date());
 
-        buildPieChart(calendar.getTime());
+        initListener();
+    }
+
+    private void initListener() {
+        // Init today button
+        layout.findViewById(R.id.todayBtn).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePieChart(0);
+            }
+        });
+
+        // Init week button
+        layout.findViewById(R.id.weekBtn).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePieChart(6);
+            }
+        });
+
+        // Init month button
+        layout.findViewById(R.id.monthBtn).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePieChart(30);
+            }
+        });
     }
 
     private void buildPieChart(Date date) {
         pieChart = layout.findViewById(R.id.chart);
+        preQueryDate = date;
 
-        /*
-        TODO:
-            Query a week or a month for pie chart (fix the CostDataBase.search() function)
-         */
+        // Query for a range of days
         ArrayList<Cost> data = costDb.search(date);
         eachTypeCost = new HashMap<>();
 
@@ -114,6 +137,13 @@ public class AnalyzeController extends PageView {
             After can create the pie chart for a month or a week,
             need to record the parameter of the last call of buildPieChart
          */
-        buildPieChart(new Date());
+        buildPieChart(preQueryDate);
+    }
+
+    public void updatePieChart(int numOfDays) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, -numOfDays);
+        buildPieChart(cal.getTime());
     }
 }

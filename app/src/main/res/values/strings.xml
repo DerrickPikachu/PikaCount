@@ -11,6 +11,9 @@
     <string name="edit">edit</string>
     <string name="name_hint">Cost name</string>
     <string name="price_hint">Please input price</string>
+    <string name="analyze_today">Today</string>
+    <string name="analyze_week">Week</string>
+    <string name="analyze_month">Month</string>
     <string-array name="type_list">
         <item>早餐</item>
         <item>午餐</item>
