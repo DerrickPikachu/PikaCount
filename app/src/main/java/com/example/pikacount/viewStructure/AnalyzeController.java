@@ -1,28 +1,27 @@
 package com.example.pikacount.viewStructure;
 
-import android.app.slice.Slice;
 import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.pikacount.R;
 import com.example.pikacount.backend.Cost;
 import com.example.pikacount.backend.CostDataBase;
-import com.example.pikacount.viewStructure.PageView;
 
-import java.time.LocalDate;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import lecho.lib.hellocharts.model.Column;
+import lecho.lib.hellocharts.model.ColumnChartData;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.model.SubcolumnValue;
+import lecho.lib.hellocharts.view.ColumnChartView;
 import lecho.lib.hellocharts.view.PieChartView;
 
 public class AnalyzeController extends PageView {
@@ -30,6 +29,8 @@ public class AnalyzeController extends PageView {
     private Context mainContext;
 
     private PieChartView pieChart;
+
+    private ColumnChartView columnChart;
 
     private View layout;
 
@@ -52,14 +53,22 @@ public class AnalyzeController extends PageView {
         super(context);
         this.mainContext = context;
 
+        // Inflate the layout
         layout = LayoutInflater.from(context).inflate(R.layout.analyze_layout, null);
         addView(layout);
 
+        // Initialize the DataBase instance
         costDb = CostDataBase.getInstance();
         typeNames = layout.getResources().getStringArray(R.array.type_list);
 
-        buildPieChart(new Date());
+        // Get the two chart reference
+        pieChart = layout.findViewById(R.id.chart);
+        columnChart = layout.findViewById(R.id.columnChart);
 
+        // Build up the Chart to the UI
+        buildChart(new Date());
+
+        // Set the three mode of the analyze
         initListener();
     }
 
@@ -68,7 +77,7 @@ public class AnalyzeController extends PageView {
         layout.findViewById(R.id.todayBtn).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                updatePieChart(0);
+                updateChart(0);
             }
         });
 
@@ -76,7 +85,7 @@ public class AnalyzeController extends PageView {
         layout.findViewById(R.id.weekBtn).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                updatePieChart(6);
+                updateChart(6);
             }
         });
 
@@ -84,13 +93,12 @@ public class AnalyzeController extends PageView {
         layout.findViewById(R.id.monthBtn).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                updatePieChart(30);
+                updateChart(30);
             }
         });
     }
 
-    private void buildPieChart(Date date) {
-        pieChart = layout.findViewById(R.id.chart);
+    private void buildChart(Date date) {
         preQueryDate = date;
 
         // Query for a range of days
@@ -99,6 +107,7 @@ public class AnalyzeController extends PageView {
 
         if (!data.isEmpty()) {
             ArrayList<SliceValue> slices = new ArrayList<>();
+            ArrayList<Column> columns = new ArrayList<>();
 
             // Push every data queried from database into the map
             for (int i = 0; i < data.size(); i++) {
@@ -117,33 +126,49 @@ public class AnalyzeController extends PageView {
                 if (eachTypeCost.containsKey(typeNames[i])) {
                     float value = eachTypeCost.get(typeNames[i]);
                     String label = typeNames[i];
+                    ArrayList<SubcolumnValue> subColumn = new ArrayList<>();
+
+                    // Add new pie chart data
                     slices.add(new SliceValue(value, layout.getResources().getColor(colors[i]))
-                                                                        .setLabel(label));
+                            .setLabel(label));
+
+                    // Add new column chart data
+                    subColumn.add(new SubcolumnValue(value, layout.getResources().getColor(colors[i]))
+                            .setLabel(label));
+                    columns.add(new Column(subColumn)
+                            .setHasLabels(true)
+                            .setHasLabelsOnlyForSelected(true));
                 }
             }
 
-            // Setting the pie chart
+            // Set the pie chart data
             PieChartData chartData = new PieChartData(slices);
+            // Set pie chart data label
             chartData.setHasLabels(true).setValueLabelTextSize(14);
+            // Set the pie chart center circle
             chartData.setHasCenterCircle(true).setCenterText1("Analyze")
                     .setCenterText1FontSize(20);
             pieChart.setPieChartData(chartData);
+
+            // Setting the column chart
+            ColumnChartData columnData = new ColumnChartData(columns);
+            columnChart.setColumnChartData(columnData);
         }
     }
 
-    public void updatePieChart() {
-        /*
-        TODO:
-            After can create the pie chart for a month or a week,
-            need to record the parameter of the last call of buildPieChart
-         */
-        buildPieChart(preQueryDate);
+    public void updateChart() {
+        buildChart(preQueryDate);
     }
 
-    public void updatePieChart(int numOfDays) {
+    public void updateChart(int numOfDays) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.DATE, -numOfDays);
-        buildPieChart(cal.getTime());
+        buildChart(cal.getTime());
     }
+
+    /*
+    TODO:
+        Need a bar chart to show the data value
+     */
 }

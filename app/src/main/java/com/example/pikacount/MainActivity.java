@@ -1,11 +1,8 @@
 package com.example.pikacount;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -101,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     data.getStringExtra("date"),
                     data.getStringExtra("type"));
             todayCostLayout.updateList();
-            analyzeLayout.updatePieChart();
+            analyzeLayout.updateChart();
         }
         if (requestCode == EDIT_DATA_CODE && resultCode == RESULT_OK) {
             ArrayList<String> setting = new ArrayList<>();
@@ -113,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             costDb.editRow(setting, Integer.parseInt(data.getStringExtra("id")));
             todayCostLayout.updateList();
-            analyzeLayout.updatePieChart();
+            analyzeLayout.updateChart();
         }
     }
 }
