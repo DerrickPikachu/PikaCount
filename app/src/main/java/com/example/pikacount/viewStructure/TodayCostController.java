@@ -25,11 +25,18 @@ import java.util.Date;
 public class TodayCostController extends PageView {
 
     private AppCompatActivity mainContext;
+
     private View layout;
+
     private ArrayList<Cost> data;
+
     private ListView costListView;
+
     private TextView addNewTxv;
+
     private CostDataBase costDb;
+
+    private TextView costTxv;
 
     public TodayCostController(AppCompatActivity context) {
         super(context);
@@ -40,6 +47,7 @@ public class TodayCostController extends PageView {
 
         costListView = layout.findViewById(R.id.costList);
         addNewTxv = layout.findViewById(R.id.addNewTxv);
+        costTxv = layout.findViewById(R.id.cost);
 
         costDb = CostDataBase.getInstance();
         updateList();
@@ -70,8 +78,18 @@ public class TodayCostController extends PageView {
     public void updateList() {
         // Query today consumes
         data = costDb.search(new Date());
+        // Prepare the adapter of the list
         CostListAdapter listAdapter = new CostListAdapter(data, mainContext, this);
         listAdapter.setMode(Attributes.Mode.Single);
+        // Set the adapter to the view
         costListView.setAdapter(listAdapter);
+
+        // Count the total cost
+        int count = 0;
+        for (int i=0; i<data.size(); i++) {
+            count += data.get(i).getPrice();
+        }
+        // Set the view text
+        costTxv.setText(Integer.toString(count));
     }
 }

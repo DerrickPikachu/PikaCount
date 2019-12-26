@@ -166,9 +166,4 @@ public class AnalyzeController extends PageView {
         cal.add(Calendar.DATE, -numOfDays);
         buildChart(cal.getTime());
     }
-
-    /*
-    TODO:
-        Need a bar chart to show the data value
-     */
 }
