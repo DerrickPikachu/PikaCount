@@ -134,7 +134,7 @@ public class AnalyzeController extends PageView {
 
                     // Add new column chart data
                     subColumn.add(new SubcolumnValue(value, layout.getResources().getColor(colors[i]))
-                            .setLabel(label));
+                            .setLabel(label + ":" + (int) value));
                     columns.add(new Column(subColumn)
                             .setHasLabels(true)
                             .setHasLabelsOnlyForSelected(true));
