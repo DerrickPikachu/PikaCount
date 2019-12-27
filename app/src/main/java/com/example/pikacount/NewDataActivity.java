@@ -45,21 +45,13 @@ public class NewDataActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initMap() {
-        /*
-            TODO:
-                Use get string array to put those type
-         */
+        // Get the type list
+        String[] type = getResources().getStringArray(R.array.type_list);
+        // Build the map with each type corresponding to the index
         spinnerMap = new HashMap<>();
-        spinnerMap.put("早餐", 0);
-        spinnerMap.put("午餐", 1);
-        spinnerMap.put("晚餐", 2);
-        spinnerMap.put("消夜", 3);
-        spinnerMap.put("零食", 4);
-        spinnerMap.put("娛樂", 5);
-        spinnerMap.put("社交", 6);
-        spinnerMap.put("交通", 7);
-        spinnerMap.put("日常用品", 8);
-        spinnerMap.put("衣物", 9);
+        for (int i=0; i<type.length; i++) {
+            spinnerMap.put(type[i], i);
+        }
     }
 
     @Override

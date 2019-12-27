@@ -164,6 +164,7 @@ public class AnalyzeController extends PageView {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.DATE, -numOfDays);
+        preQueryDate = cal.getTime();
         buildChart(cal.getTime());
     }
 }

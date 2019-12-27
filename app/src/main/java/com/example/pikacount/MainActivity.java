@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
     // My DataBase class used to control the data in primary data
     private CostDataBase costDb;
 
-    private TodayCostController todayCostLayout;
+    public static TodayCostController todayCostLayout;
 
-    private AnalyzeController analyzeLayout;
+    public static AnalyzeController analyzeLayout;
 
-    private SearchController searchLayout;
+    public static SearchController searchLayout;
 
     // Release to let every class can easily access the context of MainActivity
     public static AppCompatActivity mainContext;
