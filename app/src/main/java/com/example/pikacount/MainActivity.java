@@ -1,9 +1,11 @@
 package com.example.pikacount;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.pikacount.backend.CostDataBase;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     public final static int EDIT_DATA_CODE = 300;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 //        costDb.newCost("Test", 200, "2019-12-11", "dinner");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void initSlideLayout() {
         pageList = new ArrayList<>();
         // Create all layout

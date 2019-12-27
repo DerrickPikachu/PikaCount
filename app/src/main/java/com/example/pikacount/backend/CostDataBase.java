@@ -72,24 +72,9 @@ public class CostDataBase {
         return costList;
     }
 
-    /*
-    TODO:
-        use id to delete the target
-     */
     public void delete(String tableName, int id) {
         String deleteSQL = "DELETE FROM " + tableName + " " +
                             "WHERE costId = " + id + ";";
-//        String conditionSQL = "";
-
-//        for (int i=0; i<condition.size(); i++) {
-//            if (condition.get(i) != "") {
-//                if (conditionSQL != "")
-//                    conditionSQL = conditionSQL + "and";
-//                conditionSQL = conditionSQL + COST_ATTRIBUTE[i] + "='" + condition.get(i) + "'";
-//            }
-//        }
-
-//        deleteSQL = deleteSQL + conditionSQL + ";";
         SQLDb.execSQL(deleteSQL);
     }
 

@@ -26,19 +26,8 @@ public class CostListAdapter extends BaseSwipeAdapter {
     private CostDataBase costDb;
     private PageView controlLayout;
 
-    // The smallest id in the list
-    // Use it to be the base when there is the need of getting the other id by adding an offset
-    private int baseId;
-
     public CostListAdapter(ArrayList<Cost> list, AppCompatActivity context, PageView page) {
         this.list = list;
-
-        if (list.isEmpty()) {
-            baseId = -1;
-        }
-        else {
-            baseId = list.get(0).getCostId();
-        }
 
         this.mainContext = context;
         costDb = CostDataBase.getInstance();
