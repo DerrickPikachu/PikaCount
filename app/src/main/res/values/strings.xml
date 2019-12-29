@@ -14,6 +14,9 @@
     <string name="analyze_today">Today</string>
     <string name="analyze_week">Week</string>
     <string name="analyze_month">Month</string>
+    <string name="search_date">Search by date:</string>
+    <string name="unset">Unset</string>
+    <string name="search_type_hint">Search by type:</string>
     <string-array name="type_list">
         <item>早餐</item>
         <item>午餐</item>

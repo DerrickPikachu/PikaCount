@@ -14,6 +14,7 @@ import java.util.Date;
 public class CostDataBase {
 
     private static CostDataBase instance;
+
     private static SQLiteDatabase SQLDb;
 
     public static final String TABLE_COST_NAME = "Cost";
