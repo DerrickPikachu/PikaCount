@@ -47,11 +47,6 @@ public class CostListAdapter extends BaseSwipeAdapter {
         view.findViewById(R.id.deleteTxv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ArrayList<String> condition = new ArrayList<>();
-//                TextView costName = view.findViewById(R.id.costName);
-//                condition.add(costName.getText().toString());
-//                costDb.delete(CostDataBase.TABLE_COST_NAME, condition);
-//                controlLayout.updateList();
                 costDb.delete(CostDataBase.TABLE_COST_NAME, list.get(position).getCostId());
                 controlLayout.updateList();
                 MainActivity.analyzeLayout.updateChart();
