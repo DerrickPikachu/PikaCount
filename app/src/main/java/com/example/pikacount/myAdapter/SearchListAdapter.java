@@ -55,7 +55,7 @@ public class SearchListAdapter extends BaseAdapter {
 
         // Set the data to the textView
         name.setText(costList.get(position).getCostName());
-        price.setText(Integer.toString((costList.get(position).getPrice())));
+        price.setText("price: " + Integer.toString((costList.get(position).getPrice())));
         date.setText(costList.get(position).getDate());
 
         return v;
