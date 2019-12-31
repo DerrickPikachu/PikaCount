@@ -15,6 +15,7 @@ import com.example.pikacount.R;
 import com.example.pikacount.backend.Cost;
 import com.example.pikacount.backend.CostDataBase;
 import com.example.pikacount.myAdapter.SearchListAdapter;
+import com.example.pikacount.myDialog.InformationDialog;
 import com.example.pikacount.viewStructure.PageView;
 
 import java.text.DateFormat;
@@ -38,6 +39,8 @@ public class SearchController extends PageView
     private ListView searchList;
 
     private CostDataBase costDb;
+
+    private ArrayList<Cost> result;
 
     public SearchController(AppCompatActivity context) {
         super(context);
@@ -70,7 +73,7 @@ public class SearchController extends PageView
             Date searchDate = format.parse(dateStr);
 
             // Query to DB
-            ArrayList<Cost> result = costDb.search(searchDate);
+            result = costDb.search(searchDate);
             // Set the ListView
             SearchListAdapter adapter = new SearchListAdapter(result);
             searchList.setAdapter(adapter);
@@ -90,6 +93,7 @@ public class SearchController extends PageView
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        InformationDialog dialog = new InformationDialog(mainContext, result.get(position));
+        dialog.show();
     }
 }
