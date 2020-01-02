@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,8 @@ import java.util.Date;
 public class SearchController extends PageView
         implements DatePickerDialog.OnDateSetListener,
         View.OnClickListener,
-        AdapterView.OnItemClickListener {
+        AdapterView.OnItemClickListener,
+        AdapterView.OnItemSelectedListener {
 
     private AppCompatActivity mainContext;
 
@@ -41,6 +43,8 @@ public class SearchController extends PageView
     private CostDataBase costDb;
 
     private ArrayList<Cost> result;
+
+    private Spinner typeSpin;
 
     public SearchController(AppCompatActivity context) {
         super(context);
@@ -55,10 +59,12 @@ public class SearchController extends PageView
         // Get instance of the view
         setDateTxv = layout.findViewById(R.id.setDateTxv);
         searchList = layout.findViewById(R.id.searchedList);
+        typeSpin = layout.findViewById(R.id.typeSpinner);
 
         // Set the listener
         setDateTxv.setOnClickListener(this);
         searchList.setOnItemClickListener(this);
+        typeSpin.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -73,7 +79,7 @@ public class SearchController extends PageView
             Date searchDate = format.parse(dateStr);
 
             // Query to DB
-            result = costDb.search(searchDate);
+            result = costDb.search(typeSpin.getSelectedItem().toString(), searchDate);
             // Set the ListView
             SearchListAdapter adapter = new SearchListAdapter(result);
             searchList.setAdapter(adapter);
@@ -95,5 +101,29 @@ public class SearchController extends PageView
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         InformationDialog dialog = new InformationDialog(mainContext, result.get(position));
         dialog.show();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (!setDateTxv.getText().equals(mainContext.getResources().getString(R.string.unset))) {
+            // Prepare the date object to query the DB
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd");
+                Date searchDate = format.parse(setDateTxv.getText().toString());
+
+                // Query to DB
+                result = costDb.search(typeSpin.getSelectedItem().toString(), searchDate);
+                // Set the listView
+                SearchListAdapter adapter = new SearchListAdapter(result);
+                searchList.setAdapter(adapter);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

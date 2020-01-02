@@ -26,9 +26,12 @@ public class CostDataBase {
             "type VARCHAR(20), " +
             "costId INTEGER PRIMARY KEY AUTOINCREMENT);";
 
+//    private final String SEARCH_BY_DATE = "SELECT * " +
+//            "FROM " + TABLE_COST_NAME + " " +
+//            "WHERE date between '";
     private final String SEARCH_BY_DATE = "SELECT * " +
             "FROM " + TABLE_COST_NAME + " " +
-            "WHERE date between '";
+            "WHERE ";
 
     private final String[] COST_ATTRIBUTE = {"name", "price", "date", "type"};
 
@@ -57,9 +60,33 @@ public class CostDataBase {
     public ArrayList<Cost> search(Date date) {
         ArrayList<Cost> costList = new ArrayList<>();
         String forSearch;
+        String condition = "date between '";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        forSearch = SEARCH_BY_DATE + format.format(date) + "' and '" + format.format(new Date()) + "23:59:59'";
+        condition = condition + format.format(date) + "' and '" + format.format(new Date()) + "23:59:59'";
+//        forSearch = SEARCH_BY_DATE + format.format(date) + "' and '" + format.format(new Date()) + "23:59:59'";
+        forSearch = SEARCH_BY_DATE + condition + ";";
+        Cursor cur = SQLDb.rawQuery(forSearch, null);
+
+        cur.moveToFirst();
+        while (!cur.isAfterLast()) {
+            Cost cost = new Cost(cur.getString(0), cur.getInt(1),
+                    cur.getString(2), cur.getString(3), cur.getInt(4));
+            costList.add(cost);
+            cur.moveToNext();
+        }
+
+        return costList;
+    }
+
+    public ArrayList<Cost> search(String type, Date date) {
+        ArrayList<Cost> costList = new ArrayList<>();
+        String forSearch;
+        String condition = "type = '" + type + "' and date between '";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        condition = condition + format.format(date) + "' and '" + format.format(new Date()) + "23:59:59'";
+        forSearch = SEARCH_BY_DATE + condition + ";";
         Cursor cur = SQLDb.rawQuery(forSearch, null);
 
         cur.moveToFirst();
