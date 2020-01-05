@@ -15,14 +15,20 @@ import com.example.pikacount.MainActivity;
 import com.example.pikacount.NewDataActivity;
 import com.example.pikacount.R;
 import com.example.pikacount.backend.Cost;
+import com.example.pikacount.backend.CostDataBase;
 
 public class InformationDialog extends Dialog implements View.OnClickListener {
 
     private Cost data;
 
+    private CostDataBase costDb;
+
     public InformationDialog(@NonNull Context context, Cost data) {
         super(context);
         this.data = data;
+
+        // Get the DataBase instance
+        costDb = CostDataBase.getInstance();
 
         // Set the layout to show the information
         setContentView(R.layout.information_layout);
@@ -65,7 +71,11 @@ public class InformationDialog extends Dialog implements View.OnClickListener {
             MainActivity.mainContext.startActivityForResult(intent, MainActivity.EDIT_PAST_DATA);
         }
         else if (v.getId() == R.id.deleteBtn) {
-
+            costDb.delete(CostDataBase.TABLE_COST_NAME, data.getCostId());
+            dismiss();
+            MainActivity.todayCostLayout.updateList();
+            MainActivity.analyzeLayout.updateChart();
+            MainActivity.searchLayout.updateSearch();
         }
     }
 }

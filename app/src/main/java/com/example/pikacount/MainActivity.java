@@ -128,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
 
             costDb.editRow(setting, Integer.parseInt(data.getStringExtra("id")));
             searchLayout.updateSearch();
+            todayCostLayout.updateList();
+            analyzeLayout.updateChart();
         }
     }
 }
