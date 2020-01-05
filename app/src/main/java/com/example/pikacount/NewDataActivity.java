@@ -64,9 +64,14 @@ public class NewDataActivity extends AppCompatActivity implements View.OnClickLi
         data.putExtra("costName", nameTxv.getText().toString());
         data.putExtra("price", priceTxv.getText().toString());
         data.putExtra("type", typeSpinner.getSelectedItem().toString());
-        data.putExtra("date", format.format(today));
-        if (preData.hasExtra("id"))
+        if (preData.hasExtra("date")) {
+            data.putExtra("date", preData.getStringExtra("date"));
+        } else {
+            data.putExtra("date", format.format(today));
+        }
+        if (preData.hasExtra("id")) {
             data.putExtra("id", preData.getStringExtra("id"));
+        }
 
         setResult(RESULT_OK, data);
         finish();

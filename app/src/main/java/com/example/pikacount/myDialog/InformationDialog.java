@@ -3,6 +3,7 @@ package com.example.pikacount.myDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
@@ -10,13 +11,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.pikacount.MainActivity;
+import com.example.pikacount.NewDataActivity;
 import com.example.pikacount.R;
 import com.example.pikacount.backend.Cost;
 
 public class InformationDialog extends Dialog implements View.OnClickListener {
 
+    private Cost data;
+
     public InformationDialog(@NonNull Context context, Cost data) {
         super(context);
+        this.data = data;
 
         // Set the layout to show the information
         setContentView(R.layout.information_layout);
@@ -47,7 +53,16 @@ public class InformationDialog extends Dialog implements View.OnClickListener {
             dismiss();
         }
         else if (v.getId() == R.id.editBtn) {
+            Intent intent = new Intent(MainActivity.mainContext, NewDataActivity.class);
 
+            intent.putExtra("name", data.getCostName());
+            intent.putExtra("price", Integer.toString(data.getPrice()));
+            intent.putExtra("type", data.getType());
+            intent.putExtra("id", Integer.toString(data.getCostId()));
+            intent.putExtra("date", data.getDate());
+
+            dismiss();
+            MainActivity.mainContext.startActivityForResult(intent, MainActivity.EDIT_PAST_DATA);
         }
         else if (v.getId() == R.id.deleteBtn) {
 

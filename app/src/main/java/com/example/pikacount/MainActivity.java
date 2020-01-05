@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
     public final static int EDIT_DATA_CODE = 300;
 
+    public final static int EDIT_PAST_DATA = 350;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +117,17 @@ public class MainActivity extends AppCompatActivity {
             costDb.editRow(setting, Integer.parseInt(data.getStringExtra("id")));
             todayCostLayout.updateList();
             analyzeLayout.updateChart();
+        }
+        if (requestCode == EDIT_PAST_DATA && resultCode == RESULT_OK) {
+            ArrayList<String> setting = new ArrayList<>();
+
+            setting.add(data.getStringExtra("costName"));
+            setting.add(data.getStringExtra("price"));
+            setting.add(data.getStringExtra("date"));
+            setting.add(data.getStringExtra("type"));
+
+            costDb.editRow(setting, Integer.parseInt(data.getStringExtra("id")));
+            searchLayout.updateSearch();
         }
     }
 }

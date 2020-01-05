@@ -67,11 +67,8 @@ public class SearchController extends PageView
         typeSpin.setOnItemSelectedListener(this);
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        // Set the TextView
-        String dateStr = year + "/" + (month + 1) + "/" + dayOfMonth;
-        setDateTxv.setText(dateStr);
+    public void updateSearch() {
+        String dateStr = setDateTxv.getText().toString();
 
         try {
             // Prepare the date object to query the DB
@@ -86,6 +83,28 @@ public class SearchController extends PageView
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        // Set the TextView
+        String dateStr = year + "/" + (month + 1) + "/" + dayOfMonth;
+        setDateTxv.setText(dateStr);
+
+//        try {
+//            // Prepare the date object to query the DB
+//            SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd");
+//            Date searchDate = format.parse(dateStr);
+//
+//            // Query to DB
+//            result = costDb.search(typeSpin.getSelectedItem().toString(), searchDate);
+//            // Set the ListView
+//            SearchListAdapter adapter = new SearchListAdapter(result);
+//            searchList.setAdapter(adapter);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+        updateSearch();
     }
 
     @Override
