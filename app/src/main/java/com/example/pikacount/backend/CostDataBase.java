@@ -79,13 +79,13 @@ public class CostDataBase {
         return costList;
     }
 
-    public ArrayList<Cost> search(String type, Date date) {
+    public ArrayList<Cost> search(String type, Date fromDate, Date toDate) {
         ArrayList<Cost> costList = new ArrayList<>();
         String forSearch;
         String condition = "type = '" + type + "' and date between '";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        condition = condition + format.format(date) + "' and '" + format.format(new Date()) + "23:59:59'";
+        condition = condition + format.format(fromDate) + "' and '" + format.format(toDate) + "23:59:59'";
         forSearch = SEARCH_BY_DATE + condition + ";";
         Cursor cur = SQLDb.rawQuery(forSearch, null);
 

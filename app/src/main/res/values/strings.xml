@@ -18,6 +18,7 @@
     <string name="unset">Unset</string>
     <string name="search_type_hint">Search by type:</string>
     <string name="input_date">date:</string>
+    <string name="to">~</string>
     <string-array name="type_list">
         <item>早餐</item>
         <item>午餐</item>
