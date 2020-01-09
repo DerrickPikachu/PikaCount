@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">PikaCount</string>
+    <string name="cost_title">今日を過ごす:</string>
+    <string name="addNew">+</string>
+    <string name="input_name">お名前:</string>
+    <string name="add_cost">新しい費用</string>
+    <string name="add_data_btn">追加する</string>
+    <string name="input_price">価格:</string>
+    <string name="input_type">種類:</string>
+    <string name="delete">削除する</string>
+    <string name="edit">変更する</string>
+    <string name="name_hint">コスト名</string>
+    <string name="price_hint">価格を入力してください</string>
+    <string name="analyze_today">きょう</string>
+    <string name="analyze_week">週</string>
+    <string name="analyze_month">月</string>
+    <string name="search_date">日付によるクエリ:</string>
+    <string name="unset">設定されていません</string>
+    <string name="search_type_hint">カテゴリーから探す:</string>
+    <string name="input_date">日付:</string>
+    <string name="to">~</string>
+    <string-array name="type_list">
+        <item>朝ごはん</item>
+        <item>昼食</item>
+        <item>夕食</item>
+        <item>晩</item>
+        <item>軽食</item>
+        <item>エンターテインメント</item>
+        <item>ソーシャル</item>
+        <item>交通</item>
+        <item>日用品</item>
+        <item>服装</item>
+    </string-array>
+</resources>

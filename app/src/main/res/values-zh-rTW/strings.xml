@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">PikaCount</string>
+    <string name="cost_title">今日花費</string>
+    <string name="addNew">+</string>
+    <string name="input_name">名稱:</string>
+    <string name="add_cost">新花費</string>
+    <string name="add_data_btn">新增</string>
+    <string name="input_price">價格:</string>
+    <string name="input_type">種類:</string>
+    <string name="delete">刪除</string>
+    <string name="edit">修改</string>
+    <string name="name_hint">花費種類</string>
+    <string name="price_hint">請輸入價格</string>
+    <string name="analyze_today">今日</string>
+    <string name="analyze_week">星期</string>
+    <string name="analyze_month">月</string>
+    <string name="search_date">用日期查詢:</string>
+    <string name="unset">未設定</string>
+    <string name="search_type_hint">用種類查詢:</string>
+    <string name="input_date">日期:</string>
+    <string name="to">~</string>
+    <string-array name="type_list">
+        <item>早餐</item>
+        <item>午餐</item>
+        <item>晚餐</item>
+        <item>消夜</item>
+        <item>零食</item>
+        <item>娛樂</item>
+        <item>社交</item>
+        <item>交通</item>
+        <item>日常用品</item>
+        <item>衣物</item>
+    </string-array>
+</resources>

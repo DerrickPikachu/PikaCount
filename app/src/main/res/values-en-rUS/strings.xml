@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">PikaCount</string>
+    <string name="cost_title">Today Cost:</string>
+    <string name="addNew">+</string>
+    <string name="input_name">name:</string>
+    <string name="add_cost">New Cost</string>
+    <string name="add_data_btn">insert</string>
+    <string name="input_price">price:</string>
+    <string name="input_type">type:</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+    <string name="name_hint">Cost name</string>
+    <string name="price_hint">Please input price</string>
+    <string name="analyze_today">Today</string>
+    <string name="analyze_week">Week</string>
+    <string name="analyze_month">Month</string>
+    <string name="search_date">Search by date:</string>
+    <string name="unset">Unset</string>
+    <string name="search_type_hint">Search by type:</string>
+    <string name="input_date">date:</string>
+    <string name="to">~</string>
+    <string-array name="type_list">
+        <item>breakfast</item>
+        <item>lunch</item>
+        <item>dinner</item>
+        <item>late-night supper</item>
+        <item>snacks</item>
+        <item>entertainment</item>
+        <item>social</item>
+        <item>traffic</item>
+        <item>daily supplies</item>
+        <item>clothes</item>
+    </string-array>
+</resources>
