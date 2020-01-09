@@ -80,6 +80,7 @@ public class SearchController extends PageView
     public void updateSearch() {
         String fromDateStr = setDateTxv.getText().toString();
         String toDateStr = toDateTxv.getText().toString();
+        String type = typeSpin.getSelectedItem().toString();
 
         try {
             // Prepare the date object to query the DB
@@ -88,7 +89,12 @@ public class SearchController extends PageView
             Date searchToDate = format.parse(toDateStr);
 
             // Query to DB
-            result = costDb.search(typeSpin.getSelectedItem().toString(), searchFromDate, searchToDate);
+            if (type.equals(typeSpin.getItemAtPosition(0).toString())) {
+                // If no specified type
+                result = costDb.search(searchFromDate, searchToDate);
+            } else {
+                result = costDb.search(type, searchFromDate, searchToDate);
+            }
             // Set the ListView
             SearchListAdapter adapter = new SearchListAdapter(result);
             searchList.setAdapter(adapter);

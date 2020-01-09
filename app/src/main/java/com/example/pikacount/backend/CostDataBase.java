@@ -57,14 +57,14 @@ public class CostDataBase {
         SQLDb.insert(TABLE_COST_NAME, null, cv);
     }
 
-    public ArrayList<Cost> search(Date date) {
+    public ArrayList<Cost> search(Date fromDate, Date toDate) {
         ArrayList<Cost> costList = new ArrayList<>();
         String forSearch;
         String condition = "date between '";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        condition = condition + format.format(date) + "' and '" + format.format(new Date()) + "23:59:59'";
-//        forSearch = SEARCH_BY_DATE + format.format(date) + "' and '" + format.format(new Date()) + "23:59:59'";
+        condition = condition + format.format(fromDate) + "' and '" + format.format(toDate) + "23:59:59'";
+//        forSearch = SEARCH_BY_DATE + format.format(fromDate) + "' and '" + format.format(new Date()) + "23:59:59'";
         forSearch = SEARCH_BY_DATE + condition + ";";
         Cursor cur = SQLDb.rawQuery(forSearch, null);
 
@@ -99,6 +99,12 @@ public class CostDataBase {
 
         return costList;
     }
+
+//    public ArrayList<Cost> search(Date fromDate, Date toDate) {
+//        ArrayList<Cost> costList = new ArrayList<>();
+//        String forSearch;
+//        String condition = "date between '"
+//    }
 
     public void delete(String tableName, int id) {
         String deleteSQL = "DELETE FROM " + tableName + " " +

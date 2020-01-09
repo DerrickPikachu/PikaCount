@@ -31,4 +31,17 @@
         <item>日用品</item>
         <item>服装</item>
     </string-array>
+    <string-array name="type_list_for_search">
+        <item>無制限</item>
+        <item>朝ごはん</item>
+        <item>昼食</item>
+        <item>夕食</item>
+        <item>晩</item>
+        <item>軽食</item>
+        <item>エンターテインメント</item>
+        <item>ソーシャル</item>
+        <item>交通</item>
+        <item>日用品</item>
+        <item>服装</item>
+    </string-array>
 </resources>

@@ -31,4 +31,17 @@
         <item>daily supplies</item>
         <item>clothes</item>
     </string-array>
+    <string-array name="type_list_for_search">
+        <item>no constraint</item>
+        <item>breakfast</item>
+        <item>lunch</item>
+        <item>dinner</item>
+        <item>late-night supper</item>
+        <item>snacks</item>
+        <item>entertainment</item>
+        <item>social</item>
+        <item>traffic</item>
+        <item>daily supplies</item>
+        <item>clothes</item>
+    </string-array>
 </resources>

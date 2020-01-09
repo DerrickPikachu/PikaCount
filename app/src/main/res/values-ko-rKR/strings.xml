@@ -31,4 +31,17 @@
         <item>일 용품</item>
         <item>의류</item>
     </string-array>
+    <string-array name="type_list_for_search">
+        <item>무제한</item>
+        <item>아침 식사</item>
+        <item>점심</item>
+        <item>석식</item>
+        <item>만찬</item>
+        <item>간식</item>
+        <item>엔터테인먼트</item>
+        <item>사회</item>
+        <item>교통</item>
+        <item>일 용품</item>
+        <item>의류</item>
+    </string-array>
 </resources>

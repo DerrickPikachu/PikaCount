@@ -68,11 +68,25 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/priceHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_price"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
                     android:id="@+id/price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="TextView"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/typeHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/input_type"
                     android:textColor="#FFFFFF" />
 
                 <TextView

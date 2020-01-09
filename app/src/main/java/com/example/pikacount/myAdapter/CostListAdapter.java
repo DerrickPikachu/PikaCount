@@ -64,8 +64,8 @@ public class CostListAdapter extends BaseSwipeAdapter {
                 TextView type = view.findViewById(R.id.type);
 
                 currentData.putExtra("name", costName.getText().toString());
-                currentData.putExtra("price", price.getText().toString().substring(7));
-                currentData.putExtra("type", type.getText().toString().substring(6));
+                currentData.putExtra("price", price.getText().toString());
+                currentData.putExtra("type", type.getText().toString());
                 currentData.putExtra("id", Integer.toString(list.get(position).getCostId()));
                 mainContext.startActivityForResult(currentData, MainActivity.EDIT_DATA_CODE);
             }
@@ -85,8 +85,8 @@ public class CostListAdapter extends BaseSwipeAdapter {
 
         posTxv.setText(Integer.toString(position + 1) + ".");
         costName.setText(cost.getCostName());
-        price.setText(convertView.getResources().getString(R.string.input_price) + " " + Integer.toString(cost.getPrice()));
-        type.setText(convertView.getResources().getString(R.string.input_type) + " " + cost.getType());
+        price.setText(Integer.toString(cost.getPrice()));
+        type.setText(cost.getType());
     }
 
     @Override

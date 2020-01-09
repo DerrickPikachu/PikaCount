@@ -102,7 +102,7 @@ public class AnalyzeController extends PageView {
         preQueryDate = date;
 
         // Query for a range of days
-        ArrayList<Cost> data = costDb.search(date);
+        ArrayList<Cost> data = costDb.search(date, new Date());
         eachTypeCost = new HashMap<>();
 
         if (!data.isEmpty()) {

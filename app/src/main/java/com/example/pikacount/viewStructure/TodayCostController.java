@@ -77,7 +77,7 @@ public class TodayCostController extends PageView {
     @Override
     public void updateList() {
         // Query today consumes
-        data = costDb.search(new Date());
+        data = costDb.search(new Date(), new Date());
         // Prepare the adapter of the list
         CostListAdapter listAdapter = new CostListAdapter(data, mainContext, this);
         listAdapter.setMode(Attributes.Mode.Single);
