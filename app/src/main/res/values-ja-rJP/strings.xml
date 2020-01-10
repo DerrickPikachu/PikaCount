@@ -19,29 +19,54 @@
     <string name="search_type_hint">カテゴリーから探す:</string>
     <string name="input_date">日付:</string>
     <string name="to">~</string>
+<!--    <string-array name="type_list">-->
+<!--        <item>朝ごはん</item>-->
+<!--        <item>昼食</item>-->
+<!--        <item>夕食</item>-->
+<!--        <item>晩</item>-->
+<!--        <item>軽食</item>-->
+<!--        <item>エンターテインメント</item>-->
+<!--        <item>ソーシャル</item>-->
+<!--        <item>交通</item>-->
+<!--        <item>日用品</item>-->
+<!--        <item>服装</item>-->
+<!--    </string-array>-->
+<!--    <string-array name="type_list_for_search">-->
+<!--        <item>無制限</item>-->
+<!--        <item>朝ごはん</item>-->
+<!--        <item>昼食</item>-->
+<!--        <item>夕食</item>-->
+<!--        <item>晩</item>-->
+<!--        <item>軽食</item>-->
+<!--        <item>エンターテインメント</item>-->
+<!--        <item>ソーシャル</item>-->
+<!--        <item>交通</item>-->
+<!--        <item>日用品</item>-->
+<!--        <item>服装</item>-->
+<!--    </string-array>-->
     <string-array name="type_list">
-        <item>朝ごはん</item>
-        <item>昼食</item>
-        <item>夕食</item>
-        <item>晩</item>
-        <item>軽食</item>
-        <item>エンターテインメント</item>
-        <item>ソーシャル</item>
+        <item>早餐</item>
+        <item>午餐</item>
+        <item>晚餐</item>
+        <item>消夜</item>
+        <item>零食</item>
+        <item>娛樂</item>
+        <item>社交</item>
         <item>交通</item>
-        <item>日用品</item>
-        <item>服装</item>
+        <item>日常用品</item>
+        <item>衣物</item>
     </string-array>
     <string-array name="type_list_for_search">
-        <item>無制限</item>
-        <item>朝ごはん</item>
-        <item>昼食</item>
-        <item>夕食</item>
-        <item>晩</item>
-        <item>軽食</item>
-        <item>エンターテインメント</item>
-        <item>ソーシャル</item>
+        <item>不限</item>
+        <item>早餐</item>
+        <item>午餐</item>
+        <item>晚餐</item>
+        <item>消夜</item>
+        <item>零食</item>
+        <item>娛樂</item>
+        <item>社交</item>
         <item>交通</item>
-        <item>日用品</item>
-        <item>服装</item>
+        <item>日常用品</item>
+        <item>衣物</item>
     </string-array>
 </resources>

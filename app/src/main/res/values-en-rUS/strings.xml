@@ -19,29 +19,54 @@
     <string name="search_type_hint">Search by type:</string>
     <string name="input_date">date:</string>
     <string name="to">~</string>
+<!--    <string-array name="type_list">-->
+<!--        <item>breakfast</item>-->
+<!--        <item>lunch</item>-->
+<!--        <item>dinner</item>-->
+<!--        <item>late-night supper</item>-->
+<!--        <item>snacks</item>-->
+<!--        <item>entertainment</item>-->
+<!--        <item>social</item>-->
+<!--        <item>traffic</item>-->
+<!--        <item>daily supplies</item>-->
+<!--        <item>clothes</item>-->
+<!--    </string-array>-->
+<!--    <string-array name="type_list_for_search">-->
+<!--        <item>no constraint</item>-->
+<!--        <item>breakfast</item>-->
+<!--        <item>lunch</item>-->
+<!--        <item>dinner</item>-->
+<!--        <item>late-night supper</item>-->
+<!--        <item>snacks</item>-->
+<!--        <item>entertainment</item>-->
+<!--        <item>social</item>-->
+<!--        <item>traffic</item>-->
+<!--        <item>daily supplies</item>-->
+<!--        <item>clothes</item>-->
+<!--    </string-array>-->
     <string-array name="type_list">
-        <item>breakfast</item>
-        <item>lunch</item>
-        <item>dinner</item>
-        <item>late-night supper</item>
-        <item>snacks</item>
-        <item>entertainment</item>
-        <item>social</item>
-        <item>traffic</item>
-        <item>daily supplies</item>
-        <item>clothes</item>
+        <item>早餐</item>
+        <item>午餐</item>
+        <item>晚餐</item>
+        <item>消夜</item>
+        <item>零食</item>
+        <item>娛樂</item>
+        <item>社交</item>
+        <item>交通</item>
+        <item>日常用品</item>
+        <item>衣物</item>
     </string-array>
     <string-array name="type_list_for_search">
-        <item>no constraint</item>
-        <item>breakfast</item>
-        <item>lunch</item>
-        <item>dinner</item>
-        <item>late-night supper</item>
-        <item>snacks</item>
-        <item>entertainment</item>
-        <item>social</item>
-        <item>traffic</item>
-        <item>daily supplies</item>
-        <item>clothes</item>
+        <item>不限</item>
+        <item>早餐</item>
+        <item>午餐</item>
+        <item>晚餐</item>
+        <item>消夜</item>
+        <item>零食</item>
+        <item>娛樂</item>
+        <item>社交</item>
+        <item>交通</item>
+        <item>日常用品</item>
+        <item>衣物</item>
     </string-array>
 </resources>
