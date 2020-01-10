@@ -26,19 +26,8 @@ public class CostListAdapter extends BaseSwipeAdapter {
     private CostDataBase costDb;
     private PageView controlLayout;
 
-    // The smallest id in the list
-    // Use it to be the base when there is the need of getting the other id by adding an offset
-    private int baseId;
-
     public CostListAdapter(ArrayList<Cost> list, AppCompatActivity context, PageView page) {
         this.list = list;
-
-        if (list.isEmpty()) {
-            baseId = -1;
-        }
-        else {
-            baseId = list.get(0).getCostId();
-        }
 
         this.mainContext = context;
         costDb = CostDataBase.getInstance();
@@ -58,11 +47,9 @@ public class CostListAdapter extends BaseSwipeAdapter {
         view.findViewById(R.id.deleteTxv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> condition = new ArrayList<>();
-                TextView costName = view.findViewById(R.id.costName);
-                condition.add(costName.getText().toString());
-                costDb.delete(CostDataBase.TABLE_COST_NAME, condition);
+                costDb.delete(CostDataBase.TABLE_COST_NAME, list.get(position).getCostId());
                 controlLayout.updateList();
+                MainActivity.analyzeLayout.updateChart();
             }
         });
 
@@ -77,8 +64,8 @@ public class CostListAdapter extends BaseSwipeAdapter {
                 TextView type = view.findViewById(R.id.type);
 
                 currentData.putExtra("name", costName.getText().toString());
-                currentData.putExtra("price", price.getText().toString().substring(7));
-                currentData.putExtra("type", type.getText().toString().substring(6));
+                currentData.putExtra("price", price.getText().toString());
+                currentData.putExtra("type", type.getText().toString());
                 currentData.putExtra("id", Integer.toString(list.get(position).getCostId()));
                 mainContext.startActivityForResult(currentData, MainActivity.EDIT_DATA_CODE);
             }
@@ -98,8 +85,8 @@ public class CostListAdapter extends BaseSwipeAdapter {
 
         posTxv.setText(Integer.toString(position + 1) + ".");
         costName.setText(cost.getCostName());
-        price.setText(convertView.getResources().getString(R.string.input_price) + " " + Integer.toString(cost.getPrice()));
-        type.setText(convertView.getResources().getString(R.string.input_type) + " " + cost.getType());
+        price.setText(Integer.toString(cost.getPrice()));
+        type.setText(cost.getType());
     }
 
     @Override

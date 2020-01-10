@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">PikaCount</string>
+    <string name="cost_title">오늘 보내기:</string>
+    <string name="addNew">+</string>
+    <string name="input_name">이름:</string>
+    <string name="add_cost">새로운 비용</string>
+    <string name="add_data_btn">추가</string>
+    <string name="input_price">가격:</string>
+    <string name="input_type">종류:</string>
+    <string name="delete">삭제</string>
+    <string name="edit">수정</string>
+    <string name="name_hint">소비 이름</string>
+    <string name="price_hint">가격을 입력하십시오</string>
+    <string name="analyze_today">오늘</string>
+    <string name="analyze_week">주</string>
+    <string name="analyze_month">월</string>
+    <string name="search_date">날짜 별 쿼리:</string>
+    <string name="unset">미 설정</string>
+    <string name="search_type_hint">카테고리로 검색:</string>
+    <string name="input_date">날짜:</string>
+    <string name="to">~</string>
+    <string-array name="type_list">
+        <item>아침 식사</item>
+        <item>점심</item>
+        <item>석식</item>
+        <item>만찬</item>
+        <item>간식</item>
+        <item>엔터테인먼트</item>
+        <item>사회</item>
+        <item>교통</item>
+        <item>일 용품</item>
+        <item>의류</item>
+    </string-array>
+    <string-array name="type_list_for_search">
+        <item>무제한</item>
+        <item>아침 식사</item>
+        <item>점심</item>
+        <item>석식</item>
+        <item>만찬</item>
+        <item>간식</item>
+        <item>엔터테인먼트</item>
+        <item>사회</item>
+        <item>교통</item>
+        <item>일 용품</item>
+        <item>의류</item>
+    </string-array>
+</resources>

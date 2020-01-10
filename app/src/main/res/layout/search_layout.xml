@@ -10,13 +10,82 @@
         android:background="#DEEEA2">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/setDateHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@android:string/search_go"
+            android:layout_marginTop="30dp"
+            android:text="@string/search_date"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/setDateTxv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/unset"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/setDateHint"
+            app:layout_constraintTop_toBottomOf="@+id/setDateHint" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/search_type_hint"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/setDateHint"
+            app:layout_constraintTop_toBottomOf="@+id/setDateTxv" />
+
+        <Spinner
+            android:id="@+id/typeSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="50dp"
+            android:entries="@array/type_list_for_search"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+        <ListView
+            android:id="@+id/searchedList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/to"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/setDateTxv"
+            app:layout_constraintStart_toEndOf="@+id/setDateTxv" />
+
+        <TextView
+            android:id="@+id/toDateTxv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/analyze_today"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/setDateTxv"
+            app:layout_constraintStart_toEndOf="@+id/textView2" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

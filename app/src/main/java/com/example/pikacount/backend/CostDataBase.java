@@ -14,6 +14,7 @@ import java.util.Date;
 public class CostDataBase {
 
     private static CostDataBase instance;
+
     private static SQLiteDatabase SQLDb;
 
     public static final String TABLE_COST_NAME = "Cost";
@@ -25,9 +26,12 @@ public class CostDataBase {
             "type VARCHAR(20), " +
             "costId INTEGER PRIMARY KEY AUTOINCREMENT);";
 
+//    private final String SEARCH_BY_DATE = "SELECT * " +
+//            "FROM " + TABLE_COST_NAME + " " +
+//            "WHERE date between '";
     private final String SEARCH_BY_DATE = "SELECT * " +
             "FROM " + TABLE_COST_NAME + " " +
-            "WHERE date between '";
+            "WHERE ";
 
     private final String[] COST_ATTRIBUTE = {"name", "price", "date", "type"};
 
@@ -53,12 +57,15 @@ public class CostDataBase {
         SQLDb.insert(TABLE_COST_NAME, null, cv);
     }
 
-    public ArrayList<Cost> search(Date date) {
+    public ArrayList<Cost> search(Date fromDate, Date toDate) {
         ArrayList<Cost> costList = new ArrayList<>();
         String forSearch;
+        String condition = "date between '";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        forSearch = SEARCH_BY_DATE + format.format(date) + "' and '" + format.format(date) + "23:59:59'";
+        condition = condition + format.format(fromDate) + "' and '" + format.format(toDate) + "23:59:59'";
+//        forSearch = SEARCH_BY_DATE + format.format(fromDate) + "' and '" + format.format(new Date()) + "23:59:59'";
+        forSearch = SEARCH_BY_DATE + condition + ";";
         Cursor cur = SQLDb.rawQuery(forSearch, null);
 
         cur.moveToFirst();
@@ -72,24 +79,36 @@ public class CostDataBase {
         return costList;
     }
 
-    /*
-    TODO:
-        use id to delete the target
-     */
-    public void delete(String tableName, ArrayList<String> condition) {
-        String deleteSQL = "DELETE FROM " + tableName + " " +
-                            "WHERE ";
-        String conditionSQL = "";
+    public ArrayList<Cost> search(String type, Date fromDate, Date toDate) {
+        ArrayList<Cost> costList = new ArrayList<>();
+        String forSearch;
+        String condition = "type = '" + type + "' and date between '";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-        for (int i=0; i<condition.size(); i++) {
-            if (condition.get(i) != "") {
-                if (conditionSQL != "")
-                    conditionSQL = conditionSQL + "and";
-                conditionSQL = conditionSQL + COST_ATTRIBUTE[i] + "='" + condition.get(i) + "'";
-            }
+        condition = condition + format.format(fromDate) + "' and '" + format.format(toDate) + "23:59:59'";
+        forSearch = SEARCH_BY_DATE + condition + ";";
+        Cursor cur = SQLDb.rawQuery(forSearch, null);
+
+        cur.moveToFirst();
+        while (!cur.isAfterLast()) {
+            Cost cost = new Cost(cur.getString(0), cur.getInt(1),
+                    cur.getString(2), cur.getString(3), cur.getInt(4));
+            costList.add(cost);
+            cur.moveToNext();
         }
 
-        deleteSQL = deleteSQL + conditionSQL + ";";
+        return costList;
+    }
+
+//    public ArrayList<Cost> search(Date fromDate, Date toDate) {
+//        ArrayList<Cost> costList = new ArrayList<>();
+//        String forSearch;
+//        String condition = "date between '"
+//    }
+
+    public void delete(String tableName, int id) {
+        String deleteSQL = "DELETE FROM " + tableName + " " +
+                            "WHERE costId = " + id + ";";
         SQLDb.execSQL(deleteSQL);
     }
 

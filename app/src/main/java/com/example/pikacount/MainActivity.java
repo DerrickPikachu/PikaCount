@@ -1,13 +1,11 @@
 package com.example.pikacount;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-<<<<<<< HEAD
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.pikacount.backend.CostDataBase;
@@ -16,24 +14,12 @@ import com.example.pikacount.viewStructure.TodayCostController;
 import com.example.pikacount.viewStructure.AnalyzeController;
 import com.example.pikacount.viewStructure.SearchController;
 import com.example.pikacount.viewStructure.PageView;
-=======
-import androidx.viewpager.widget.ViewPager;
-
-import android.graphics.pdf.PdfDocument;
-import android.os.Bundle;
-
-import com.example.pikacount.viewStructure.AnalyzeActivity;
-import com.example.pikacount.viewStructure.PageView;
-import com.example.pikacount.viewStructure.SearchActivity;
-import com.example.pikacount.viewStructure.TodayCostActivity;
->>>>>>> 8ef4810534be616c5feb1ef06348630bb242dfa2
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
 
     // ViewPager is used to slide the layout horizontally
     private ViewPager viewPager;
@@ -50,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
     // My DataBase class used to control the data in primary data
     private CostDataBase costDb;
 
-    private TodayCostController todayCostLayout;
+    public static TodayCostController todayCostLayout;
 
-    private AnalyzeController analyzeLayout;
+    public static AnalyzeController analyzeLayout;
 
-    private SearchController searchLayout;
+    public static SearchController searchLayout;
 
     // Release to let every class can easily access the context of MainActivity
     public static AppCompatActivity mainContext;
@@ -64,18 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
     public final static int EDIT_DATA_CODE = 300;
 
-=======
-    private ArrayList<String> tabName;
-    private TabLayout tab;
-    private ViewPager pager;
-    private ArrayList<PageView> pageList;
+    public final static int EDIT_PAST_DATA = 350;
 
->>>>>>> 8ef4810534be616c5feb1ef06348630bb242dfa2
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
         mainContext = this;
 
         initBackend();
@@ -84,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 //        costDb.newCost("Test", 200, "2019-12-11", "dinner");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void initSlideLayout() {
         pageList = new ArrayList<>();
         // Create all layout
@@ -122,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     data.getStringExtra("date"),
                     data.getStringExtra("type"));
             todayCostLayout.updateList();
+            analyzeLayout.updateChart();
         }
         if (requestCode == EDIT_DATA_CODE && resultCode == RESULT_OK) {
             ArrayList<String> setting = new ArrayList<>();
@@ -133,31 +116,20 @@ public class MainActivity extends AppCompatActivity {
 
             costDb.editRow(setting, Integer.parseInt(data.getStringExtra("id")));
             todayCostLayout.updateList();
+            analyzeLayout.updateChart();
         }
-=======
+        if (requestCode == EDIT_PAST_DATA && resultCode == RESULT_OK) {
+            ArrayList<String> setting = new ArrayList<>();
 
-        tab = findViewById(R.id.tab);
-        pager = findViewById(R.id.pager);
+            setting.add(data.getStringExtra("costName"));
+            setting.add(data.getStringExtra("price"));
+            setting.add(data.getStringExtra("date"));
+            setting.add(data.getStringExtra("type"));
 
-        initView();
-
-    }
-
-    private void initView() {
-        pageList = new ArrayList<>();
-        tabName = new ArrayList<>();
-
-        pageList.add(new TodayCostActivity(this));
-        pageList.add(new AnalyzeActivity(this));
-        pageList.add(new SearchActivity(this));
-
-        tabName.add("Today Cost");
-        tabName.add("Analyze");
-        tabName.add("Search");
-
-        ViewAdapter adapter = new ViewAdapter(pageList, tabName);
-        pager.setAdapter(adapter);
-        tab.setupWithViewPager(pager);
->>>>>>> 8ef4810534be616c5feb1ef06348630bb242dfa2
+            costDb.editRow(setting, Integer.parseInt(data.getStringExtra("id")));
+            searchLayout.updateSearch();
+            todayCostLayout.updateList();
+            analyzeLayout.updateChart();
+        }
     }
 }
